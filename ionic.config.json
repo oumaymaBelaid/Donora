@@ -1,0 +1,7 @@
+{
+  "name": "Donora",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
