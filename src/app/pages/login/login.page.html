@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <form (ngSubmit)="submit()" class="page-pad">
+  <div class="page-pad">
     <ion-card>
       <ion-card-header>
         <ion-card-title>BloodConnect</ion-card-title>
@@ -13,94 +13,121 @@
       </ion-card-header>
       <ion-card-content>
         <!-- Messages d'erreur -->
-        <ion-text color="danger" *ngIf="errorMessage">
-          <div class="error-message">{{ errorMessage }}</div>
-        </ion-text>
+        <div *ngIf="errorMessage" class="error-message">
+          {{ errorMessage }}
+        </div>
 
         <!-- Sélecteur de mode -->
-        <ion-item>
-          <ion-segment [(ngModel)]="mode" name="mode" (ionChange)="switchMode()">
-            <ion-segment-button value="login">Connexion</ion-segment-button>
-            <ion-segment-button value="register">Inscription</ion-segment-button>
-          </ion-segment>
-        </ion-item>
+        <ion-segment [(ngModel)]="mode" (ionChange)="switchMode()" class="mode-selector">
+          <ion-segment-button value="login">Connexion</ion-segment-button>
+          <ion-segment-button value="register">Inscription</ion-segment-button>
+        </ion-segment>
 
-        <!-- Sélecteur de rôle (uniquement en mode inscription) -->
-        <ion-item *ngIf="mode === 'register'">
-          <ion-select label="Je suis un(e)..." labelPlacement="stacked" [(ngModel)]="role" name="role">
-            <ion-select-option value="donor">Donneur de sang</ion-select-option>
-            <ion-select-option value="org">Organisation (Banque de sang, Hôpital...)</ion-select-option>
-          </ion-select>
-        </ion-item>
+        <!-- Formulaire de connexion -->
+        <div *ngIf="mode === 'login'" class="login-form">
+          <form (ngSubmit)="submit()">
+            <ion-item>
+              <ion-input 
+                type="email" 
+                label="Email" 
+                labelPlacement="stacked" 
+                [(ngModel)]="email" 
+                name="email" 
+                placeholder="votre@email.com"
+                [disabled]="loading"
+                required>
+              </ion-input>
+            </ion-item>
 
-        <!-- Champ email -->
-        <ion-item>
-          <ion-input 
-            type="email" 
-            label="Email" 
-            labelPlacement="stacked" 
-            [(ngModel)]="email" 
-            name="email" 
-            placeholder="votre@email.com"
-            [disabled]="loading"
-            required>
-          </ion-input>
-        </ion-item>
+            <ion-item>
+              <ion-input 
+                type="password" 
+                label="Mot de passe" 
+                labelPlacement="stacked" 
+                [(ngModel)]="password" 
+                name="password" 
+                placeholder="••••••••"
+                [disabled]="loading"
+                required>
+              </ion-input>
+            </ion-item>
 
-        <!-- Champ mot de passe -->
-        <ion-item>
-          <ion-input 
-            type="password" 
-            label="Mot de passe" 
-            labelPlacement="stacked" 
-            [(ngModel)]="password" 
-            name="password" 
-            placeholder="••••••••"
-            [disabled]="loading"
-            required>
-          </ion-input>
-        </ion-item>
+            <ion-button 
+              type="submit" 
+              expand="block" 
+              class="submit-btn" 
+              [disabled]="!email || !password || loading">
+              <ion-spinner name="crescent" *ngIf="loading"></ion-spinner>
+              <span *ngIf="!loading">Se connecter</span>
+            </ion-button>
+          </form>
+        </div>
 
-        <!-- Bouton de soumission -->
-        <ion-button 
-          type="submit" 
-          expand="block" 
-          class="submit-btn" 
-          [disabled]="!email || !password || loading || (mode === 'register' && !role)">
-          <ion-spinner name="crescent" *ngIf="loading"></ion-spinner>
-          <span *ngIf="!loading">
-            {{ mode === 'login' ? 'Se connecter' : 'Créer mon compte' }}
-          </span>
-        </ion-button>
+        <!-- Formulaire d'inscription -->
+        <div *ngIf="mode === 'register'" class="register-form">
+          <form (ngSubmit)="submit()">
+            <ion-item>
+              <ion-select 
+                label="Je suis un(e)..." 
+                labelPlacement="stacked" 
+                [(ngModel)]="role" 
+                name="role">
+                <ion-select-option value="donor">Donneur de sang</ion-select-option>
+                <ion-select-option value="org">Organisation (Banque de sang, Hôpital...)</ion-select-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item>
+              <ion-input 
+                type="email" 
+                label="Email" 
+                labelPlacement="stacked" 
+                [(ngModel)]="email" 
+                name="email" 
+                placeholder="votre@email.com"
+                [disabled]="loading"
+                required>
+              </ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input 
+                type="password" 
+                label="Mot de passe" 
+                labelPlacement="stacked" 
+                [(ngModel)]="password" 
+                name="password" 
+                placeholder="••••••••"
+                [disabled]="loading"
+                required>
+              </ion-input>
+            </ion-item>
+
+            <ion-button 
+              type="submit" 
+              expand="block" 
+              class="submit-btn" 
+              [disabled]="!email || !password || !role || loading">
+              <ion-spinner name="crescent" *ngIf="loading"></ion-spinner>
+              <span *ngIf="!loading">Créer mon compte</span>
+            </ion-button>
+          </form>
+        </div>
 
         <!-- Lien pour changer de mode -->
         <div class="mode-switch">
-          <ion-text color="medium">
-            <p>
-              {{ mode === 'login' ? 'Pas encore de compte ?' : 'Déjà un compte ?' }}
-              <ion-button 
-                fill="clear" 
-                size="small" 
-                (click)="switchMode()"
-                [disabled]="loading">
-                {{ mode === 'login' ? 'Créer un compte' : 'Se connecter' }}
-              </ion-button>
-            </p>
-          </ion-text>
-        </div>
-
-        <!-- Information selon le mode -->
-        <div class="mode-info" *ngIf="mode === 'register'">
-          <ion-text color="medium">
-            <p class="info-text">
-              <ion-icon name="information-circle-outline"></ion-icon>
-              Choisissez votre rôle pour accéder aux fonctionnalités appropriées
-            </p>
-          </ion-text>
+          <p>
+            {{ mode === 'login' ? 'Pas encore de compte ?' : 'Déjà un compte ?' }}
+            <ion-button 
+              fill="clear" 
+              size="small" 
+              (click)="switchMode()"
+              [disabled]="loading">
+              {{ mode === 'login' ? 'Créer un compte' : 'Se connecter' }}
+            </ion-button>
+          </p>
         </div>
       </ion-card-content>
     </ion-card>
-  </form>
+  </div>
 </ion-content>
-
-

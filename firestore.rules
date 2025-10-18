@@ -37,11 +37,19 @@ service cloud.firestore {
     
     // Règles pour les utilisateurs
     match /users/{userId} {
-      // Lecture : seul l'utilisateur lui-même peut lire ses données
-      allow read: if request.auth != null && request.auth.uid == userId;
+      // Lecture : l'utilisateur lui-même ou les organisations peuvent lire les données
+      allow read: if request.auth != null && 
+        (request.auth.uid == userId || 
+         resource.data.role == 'org');
       
-      // Écriture : seul l'utilisateur lui-même peut créer/modifier ses données
-      allow write: if request.auth != null && request.auth.uid == userId;
+      // Création : seul l'utilisateur lui-même peut créer son profil lors de l'inscription
+      allow create: if request.auth != null && request.auth.uid == userId;
+      
+      // Modification : seul l'utilisateur lui-même peut modifier ses données
+      allow update: if request.auth != null && request.auth.uid == userId;
+      
+      // Suppression : seul l'utilisateur lui-même peut supprimer son compte
+      allow delete: if request.auth != null && request.auth.uid == userId;
     }
   }
 }
