@@ -1,0 +1,83 @@
+/* Styles pour la page de détails */
+.page-pad {
+  padding: 16px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.register-btn {
+  margin-top: 16px;
+  --background: var(--ion-color-success);
+  --color: white;
+}
+
+.participants-title {
+  margin-top: 24px;
+}
+
+.title-no-margin {
+  margin-top: 0;
+}
+
+.missing-pad {
+  padding: 32px 16px;
+  text-align: center;
+  color: var(--ion-color-danger);
+  font-weight: 500;
+}
+
+/* Amélioration des cartes */
+ion-card {
+  margin: 16px 0;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+ion-card-header {
+  padding-bottom: 8px;
+}
+
+ion-card-content {
+  padding-top: 8px;
+}
+
+/* Styles pour les puces de groupe sanguin */
+.chip {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 16px;
+  background: var(--ion-color-primary-tint);
+  color: var(--ion-color-primary);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* Amélioration des éléments de formulaire */
+ion-item {
+  --padding-start: 0;
+  --inner-padding-end: 0;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  --background: var(--ion-color-light);
+}
+
+ion-input {
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+}
+
+/* Liste des participants */
+ion-list {
+  margin-top: 16px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+ion-item {
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --border-color: var(--ion-color-light-shade);
+}
+

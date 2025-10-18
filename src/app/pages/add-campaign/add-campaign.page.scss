@@ -1,0 +1,48 @@
+
+/* Styles pour la page d'ajout de campagne */
+.form-padding {
+  padding: 16px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.actions {
+  margin-top: 32px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+/* Amélioration des éléments de formulaire */
+ion-item {
+  --padding-start: 0;
+  --inner-padding-end: 0;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  --background: var(--ion-color-light);
+}
+
+ion-input, ion-textarea, ion-select {
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+}
+
+ion-datetime-button {
+  --padding-start: 16px;
+  --padding-end: 16px;
+  margin: 16px 0;
+}
+
+/* Boutons d'action */
+ion-button[type="submit"] {
+  --background: var(--ion-color-success);
+  --color: white;
+  flex: 1;
+}
+
+ion-button[color="medium"] {
+  flex: 1;
+}
+

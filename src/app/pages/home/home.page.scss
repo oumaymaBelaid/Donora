@@ -1,0 +1,77 @@
+/* Styles spécifiques à la page d'accueil */
+.empty-hint {
+  padding: 32px 16px;
+  text-align: center;
+  color: var(--ion-color-medium);
+  font-style: italic;
+}
+
+/* Amélioration des cartes */
+ion-card {
+  margin: 8px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+ion-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Styles pour les puces de groupe sanguin */
+.chip {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 16px;
+  background: var(--ion-color-primary-tint);
+  color: var(--ion-color-primary);
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+/* Amélioration des toolbars */
+ion-header ion-toolbar {
+  --background: var(--ion-color-primary);
+  --color: white;
+}
+
+/* Première toolbar (titre + boutons) */
+ion-header ion-toolbar:first-child {
+  --background: var(--ion-color-primary);
+  --color: white;
+}
+
+/* Toolbar avec searchbar */
+ion-header ion-toolbar:nth-child(2) {
+  --background: var(--ion-color-primary-shade);
+  --color: white;
+  padding: 8px 16px;
+}
+
+/* Toolbar avec segments */
+ion-header ion-toolbar:last-child {
+  --background: var(--ion-color-primary-shade);
+  --color: white;
+  padding: 8px 16px;
+}
+
+ion-searchbar {
+  --background: rgba(255, 255, 255, 0.1);
+  --color: white;
+  --placeholder-color: rgba(255, 255, 255, 0.7);
+  --icon-color: white;
+  border-radius: 8px;
+}
+
+ion-segment {
+  --background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}
+
+ion-segment-button {
+  --color: rgba(255, 255, 255, 0.7);
+  --color-checked: white;
+  --background-checked: rgba(255, 255, 255, 0.2);
+}

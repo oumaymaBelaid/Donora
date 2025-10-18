@@ -1,0 +1,171 @@
+/* Styles pour la page de connexion */
+.page-pad {
+  padding: 16px;
+  max-width: 400px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.submit-btn {
+  margin-top: 24px;
+  --background: var(--ion-color-primary);
+  --color: white;
+  font-weight: 500;
+}
+
+/* Amélioration de la carte de connexion */
+ion-card {
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  margin: 0;
+}
+
+ion-card-header {
+  text-align: center;
+  padding-bottom: 8px;
+}
+
+ion-card-title {
+  color: var(--ion-color-primary);
+  font-weight: 600;
+  font-size: 24px;
+}
+
+ion-card-subtitle {
+  color: var(--ion-color-medium);
+  font-size: 14px;
+}
+
+/* Amélioration des éléments de formulaire */
+ion-item {
+  --padding-start: 0;
+  --inner-padding-end: 0;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  --background: var(--ion-color-light);
+}
+
+ion-input {
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+}
+
+ion-segment {
+  --background: var(--ion-color-light);
+  margin-bottom: 16px;
+}
+
+ion-segment-button {
+  --color: var(--ion-color-medium);
+  --color-checked: var(--ion-color-primary);
+  --background-checked: var(--ion-color-primary-tint);
+}
+
+ion-select {
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+}
+
+/* Styles pour les messages d'erreur */
+.error-message {
+  background: var(--ion-color-danger-tint);
+  color: var(--ion-color-danger);
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin: 16px 0;
+  font-size: 14px;
+  border-left: 4px solid var(--ion-color-danger);
+}
+
+/* Styles pour le changement de mode */
+.mode-switch {
+  text-align: center;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--ion-color-light-shade);
+}
+
+.mode-switch p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.mode-switch ion-button {
+  --color: var(--ion-color-primary);
+  font-weight: 500;
+}
+
+/* Amélioration du spinner */
+ion-spinner {
+  margin-right: 8px;
+}
+
+/* Styles pour les états désactivés */
+ion-input[disabled], 
+ion-select[disabled], 
+ion-segment[disabled] {
+  opacity: 0.6;
+}
+
+/* Animation pour les changements de mode */
+ion-segment {
+  transition: all 0.3s ease;
+}
+
+/* Amélioration de l'accessibilité */
+ion-button:focus-visible {
+  outline: 2px solid var(--ion-color-primary);
+  outline-offset: 2px;
+}
+
+/* Styles pour les informations de mode */
+.mode-info {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.info-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 13px;
+  margin: 0;
+  padding: 12px;
+  background: var(--ion-color-primary-tint);
+  border-radius: 8px;
+  color: var(--ion-color-primary);
+}
+
+.info-text ion-icon {
+  font-size: 16px;
+}
+
+/* Amélioration du sélecteur de rôle */
+ion-select {
+  --placeholder-color: var(--ion-color-medium);
+  --placeholder-opacity: 1;
+}
+
+/* Animation pour l'apparition des éléments */
+ion-item {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

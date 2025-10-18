@@ -1,13 +1,46 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>details</ion-title>
+    <ion-title>Détails</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">details</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="page-pad" *ngIf="campaign as c; else missing">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>{{ c.title }}</ion-card-title>
+        <ion-card-subtitle class="muted">{{ c.date | date:'medium' }} • {{ c.location || 'Lieu à préciser' }}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <span class="chip">{{ c.bloodType || 'Tous groupes' }}</span>
+        <p style="margin-top:12px">{{ c.description }}</p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Participation</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-input label="Votre identifiant" labelPlacement="stacked" [(ngModel)]="donorId" placeholder="email ou ID"></ion-input>
+        </ion-item>
+        <ion-button expand="block" class="register-btn" (click)="register()" [disabled]="!donorId">S'inscrire</ion-button>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Participants ({{ c.participants?.length || 0 }})</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item *ngFor="let p of c.participants">{{ p }}</ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <ng-template #missing>
+    <ion-text color="danger"><div class="missing-pad">Campagne introuvable.</div></ion-text>
+  </ng-template>
 </ion-content>

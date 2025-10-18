@@ -1,13 +1,26 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>profile</ion-title>
+    <ion-title>Profil</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">profile</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="page-pad">
+    <ion-item>
+      <ion-input label="Votre identifiant" labelPlacement="stacked" [(ngModel)]="donorId" placeholder="email ou ID"></ion-input>
+    </ion-item>
+    <ion-button class="load-btn" (click)="loadHistory()" [disabled]="!donorId">Charger l'historique</ion-button>
+
+    <ion-list *ngIf="history?.length">
+      <ion-item *ngFor="let h of history">
+        <ion-label>
+          <h2>Campagne #{{ h.campaignId }}</h2>
+          <p>{{ h.date | date:'medium' }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+    <ion-text color="medium" *ngIf="history && history.length === 0">
+      <div class="empty-hint">Aucun don enregistré pour cet identifiant.</div>
+    </ion-text>
+  </div>
 </ion-content>
